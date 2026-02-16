@@ -5,6 +5,11 @@
 
 #include "money.h"
 
+/**
+ * @brief Checks if the specified currency is supported.
+ * @param c The currency to verify.
+ * @return 1 if the currency is supported, 0 otherwise.
+ */
 static int currency_is_supported(Currency c) {
     return c == CUR_EUR || c == CUR_USD || c == CUR_GBP;
 }
