@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @brief Check if the multiplication of two size_t values would result in an arithmetic overflow.
+ * @param a The first factor.
+ * @param b The second factor.
+ * @return 1 if the multiplication would overflow, 0 otherwise.
+ */
 static int would_overflow(size_t a, size_t b) {
     return (a > (SIZE_MAX - b)) ? 1 : 0;
 }
