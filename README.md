@@ -1,9 +1,9 @@
-# Smoke C Repo
+# docgen-smoke-plus
 
-Minimal C repo for testing Doxygen comment insertion tooling.
+Repo to test Doxygen auto-comment insertion for C/C++.
 
-Build:
-  cc -Iinclude -o app src/main.c src/money.c
+## Build (C part)
+cc -Iinclude -o c_demo src/api.c src/callbacks.c
 
-Run:
-  ./app
+## Build (C++ part)
+c++ -Iinclude -std=c++17 -o cpp_demo src/cxx_api.cpp
