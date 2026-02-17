@@ -2,10 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @brief Check if the multiplication of two size values would exceed the maximum representable value.
+ * @param a The first factor.
+ * @param b The second factor.
+ * @return 1 if the multiplication would overflow, 0 otherwise.
+ */
 static int would_overflow(size_t a, size_t b) {
     return (a > (SIZE_MAX - b)) ? 1 : 0;
 }
 
+/**
+ * @brief Ds buffer make.
+ * @param initial_cap Parameter of type inferred from signature.
+ * @return ds_buffer.
+ */
 ds_buffer ds_buffer_make(size_t initial_cap) {
     ds_buffer b;
     b.len = 0;
@@ -14,6 +25,13 @@ ds_buffer ds_buffer_make(size_t initial_cap) {
     return b;
 }
 
+/**
+ * @brief Ds buffer append.
+ * @param b Parameter of type inferred from signature.
+ * @param bytes Parameter of type inferred from signature.
+ * @param n Parameter of type inferred from signature.
+ * @return ds_err.
+ */
 ds_err ds_buffer_append(ds_buffer* b, const void* bytes, size_t n) {
     if (!b || (!bytes && n > 0)) return DS_ERR_INVALID_ARG;
     if (would_overflow(b->len, n)) return DS_ERR_OVERFLOW;
@@ -33,14 +51,28 @@ ds_err ds_buffer_append(ds_buffer* b, const void* bytes, size_t n) {
     return DS_OK;
 }
 
+/**
+ * @brief Ds buffer data.
+ * @param b Parameter of type inferred from signature.
+ * @return uint8_t.
+ */
 const uint8_t* ds_buffer_data(const ds_buffer* b) {
     return b ? b->data : NULL;
 }
 
+/**
+ * @brief Ds buffer size.
+ * @param b Parameter of type inferred from signature.
+ * @return size_t.
+ */
 size_t ds_buffer_size(const ds_buffer* b) {
     return b ? b->len : 0;
 }
 
+/**
+ * @brief Ds buffer free.
+ * @param b Parameter of type inferred from signature.
+ */
 void ds_buffer_free(ds_buffer* b) {
     if (!b) return;
     free(b->data);
